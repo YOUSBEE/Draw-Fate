@@ -1,11 +1,12 @@
 import 'package:uuid/uuid.dart';
+import 'package:intl/intl.dart';
 import 'mahjong_tile.dart';
 
 class DrawSession {
   final String id;
   final DateTime createdAt;
-  final List<MahjongTile> drawnTiles; // in order of draw
-  final bool isComplete; // true if 13 tiles drawn
+  final List<MahjongTile> drawnTiles;
+  final bool isComplete;
 
   DrawSession({
     String? id,
@@ -17,14 +18,12 @@ class DrawSession {
 
   int get tileCount => drawnTiles.length;
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'createdAt': createdAt.toIso8601String(),
-      'drawnTiles': drawnTiles.map((t) => t.toJson()).toList(),
-      'isComplete': isComplete,
-    };
-  }
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'createdAt': createdAt.toIso8601String(),
+        'drawnTiles': drawnTiles.map((t) => t.toJson()).toList(),
+        'isComplete': isComplete,
+      };
 
   factory DrawSession.fromJson(Map<String, dynamic> json) {
     return DrawSession(
@@ -37,12 +36,10 @@ class DrawSession {
     );
   }
 
+  // 2026.08.05 Wed 08:55
   String get sessionLabel {
-    final time =
-        '${createdAt.hour.toString().padLeft(2, '0')}:${createdAt.minute.toString().padLeft(2, '0')}';
-    final date =
-        '${createdAt.month}/${createdAt.day}';
-    return '$date $time';
+    final fmt = DateFormat('yyyy.MM.dd EEE HH:mm', 'ko');
+    return fmt.format(createdAt);
   }
 
   String get statusLabel {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/game_provider.dart';
 import 'session_detail_screen.dart';
+import 'share_preview_screen.dart';
 import 'game_screen.dart' show kAccent, kBgBlack, kSurfaceBlack, kCardBlack;
 
 class HistoryScreen extends StatelessWidget {
@@ -132,8 +133,27 @@ class HistoryScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Icon(Icons.chevron_right,
-                              color: kAccent.withOpacity(0.5)),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                icon: Icon(Icons.image_outlined,
+                                    color: kAccent.withOpacity(0.7), size: 22),
+                                tooltip: '이미지 저장',
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => SharePreviewScreen(
+                                          session: session),
+                                    ),
+                                  );
+                                },
+                              ),
+                              Icon(Icons.chevron_right,
+                                  color: kAccent.withOpacity(0.5)),
+                            ],
+                          ),
                         ],
                       ),
                     ),

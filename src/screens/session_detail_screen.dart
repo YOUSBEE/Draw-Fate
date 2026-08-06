@@ -137,10 +137,10 @@ class SessionDetailScreen extends StatelessWidget {
       '통수': 0,
       '삭수': 0,
       '자패': 0,
-      '적': 0,
+      '적도라': 0,
     };
     for (final tile in session.drawnTiles) {
-      if (tile.isAkaDora) counts['적'] = counts['적']! + 1;
+      if (tile.isAkaDora) counts['적도라'] = counts['적도라']! + 1;
       switch (tile.suit) {
         case TileSuit.man:
           counts['만수'] = counts['만수']! + 1;
@@ -173,7 +173,7 @@ class SessionDetailScreen extends StatelessWidget {
                     Text(
                       '${e.value}',
                       style: TextStyle(
-                        color: e.key == '적'
+                        color: e.key == '적도라'
                             ? const Color(0xFFFF1744)
                             : kAccent,
                         fontSize: 20,
@@ -183,7 +183,7 @@ class SessionDetailScreen extends StatelessWidget {
                     Text(
                       e.key,
                       style: TextStyle(
-                        color: e.key == '적'
+                        color: e.key == '적도라'
                             ? const Color(0xFFFF8A80)
                             : Colors.white38,
                         fontSize: 11,
